@@ -1,0 +1,13 @@
+# Node.js関連
+node_modules/
+npm-debug.log
+yarn.lock
+
+# 環境変数ファイル
+.env
+
+# サービスアカウントキー
+server/keys/
+*.json
+
+Running Route Generator.json
