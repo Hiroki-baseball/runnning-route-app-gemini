@@ -13,3 +13,20 @@ server/keys/
 *.json
 
 Running Route Generator.json
+# Node.js のビルドファイル
+dist/
+build/
+*.map
+
+# Python のキャッシュファイル
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# エディタやツールの設定ファイル
+.vscode/
+.idea/
+.DS_Store
+*.log
+google-cloud-sdk/

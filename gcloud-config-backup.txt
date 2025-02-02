@@ -1,0 +1,6 @@
+is_active: true
+name: default
+properties:
+  core:
+    account: baseballinobu@gmail.com
+    project: geminigeneratemap-temp

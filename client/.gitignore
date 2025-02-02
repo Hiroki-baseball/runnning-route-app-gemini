@@ -24,3 +24,18 @@ yarn-debug.log*
 yarn-error.log*
 *.log
 *.cache
+# Node.js のビルドファイル
+dist/
+*.map
+
+# Python のキャッシュファイル
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# エディタやツールの設定ファイル
+.vscode/
+.idea/
+
+google-cloud-sdk/
