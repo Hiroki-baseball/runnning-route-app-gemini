@@ -9,7 +9,6 @@ const vertexAI = new VertexAI({
 
 const generateRoute = async (prompt) => {
   try {
-    // Gemini モデルを取得
     const generativeModel = vertexAI.getGenerativeModel({
       model: config.geminiModelId,
     });
@@ -30,7 +29,6 @@ const generateRoute = async (prompt) => {
 
     console.log("[INFO] Raw response content from Vertex AI:", content);
 
-    // Markdown の ```json 記法を除去して整形
     const cleanedMessage = content.replace(/```json/g, "").replace(/```/g, "").trim();
 
     if (!cleanedMessage) {
@@ -38,7 +36,6 @@ const generateRoute = async (prompt) => {
       throw new Error("Response content is not a valid string.");
     }
 
-    // JSON としてパース
     let routeData;
     try {
     } catch (jsonError) {

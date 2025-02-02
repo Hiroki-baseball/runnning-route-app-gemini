@@ -31,7 +31,6 @@ router.post('/gemini-generate-route', async (req, res) => {
   const originStr = `${originCoords.lat},${originCoords.lng}`;
   const destinationStr = `${destinationCoords.lat},${destinationCoords.lng}`;
 
-  // リクエストパラメータからプロンプトを生成
   const prompt = generatePrompt(originStr, destinationStr, distance);
 
   try {
