@@ -30,6 +30,7 @@ const generateRoute = async (prompt) => {
     console.log("[INFO] Raw response content from Vertex AI:", content);
 
     const cleanedMessage = content.replace(/```json/g, "").replace(/```/g, "").trim();
+    console.log("[DEBUG] cleanedMessage:", cleanedMessage);
 
     if (!cleanedMessage) {
       console.error("[ERROR] Content is not a valid string:", content);
@@ -38,10 +39,13 @@ const generateRoute = async (prompt) => {
 
     let routeData;
     try {
+      routeData = JSON.parse(cleanedMessage);
     } catch (jsonError) {
       console.error("[ERROR] Failed to parse JSON response:", cleanedMessage);
+      console.error("[ERROR] JSON parse error stack:", jsonError);
       throw new Error("Invalid JSON format returned by the model.");
     }
+    console.log("[DEBUG] Parsed routeData:", JSON.stringify(routeData, null, 2));
 
     return routeData;
   } catch (error) {

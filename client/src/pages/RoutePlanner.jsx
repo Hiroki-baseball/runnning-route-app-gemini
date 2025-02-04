@@ -3,8 +3,10 @@ import React, { useState, useEffect,useRef } from "react";
 import MapView from "../components/MapView";
 import RouteForm from "../components/RouteForm";
 import { reverseGeocode, geocodeAddress } from "../utils/geocoding";
+import config from '../config';
 
 const initialDistancePresets = [3, 5, 10, 21.1, 42.2];
+const apiUrl = `${config.apiBaseUrl}/api/gemini-generate-route`;
 
 function RoutePlanner() {
   // ---- State管理 ----
@@ -124,7 +126,11 @@ function RoutePlanner() {
       const destinationLatLng = await geocodeAddress(destination);
 
       // APIコール(サーバーでルートを生成する想定)
-      const response = await fetch("http://localhost:3001/api/gemini-generate-route", {
+      // デプロイ用
+      // const response = await fetch("/api/gemini-generate-route", {
+      // ローカル用
+      // const response = await fetch("http://localhost:8080/api/gemini-generate-route", {
+        const response = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

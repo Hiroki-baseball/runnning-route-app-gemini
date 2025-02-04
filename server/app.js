@@ -14,7 +14,20 @@ const __dirname = dirname(__filename);
 const app = express();
 
 // フロントエンドのURLは環境変数から取得
-app.use(cors({ origin: config.frontendUrl }));
+//デプロイ用一行だけ
+// app.use(cors({ origin: config.apiBaseUrl }));
+
+const allowedOrigins = process.env.NODE_ENV === 'production'
+  ? [config.apiBaseUrl]
+  : [config.corsOrigin];
+
+app.use(cors({ 
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  }));
+
 app.use(bodyParser.json());
 
 // ルートの登録

@@ -8,8 +8,7 @@ COPY client ./client
 # フロントエンドの依存関係インストール＆ビルド
 RUN cd client \
     && npm install \
-    && npm run build
-
+    && npm run build --cache-from=type=registry,ref=asia-northeast1-docker.pkg.dev/geminigeneratemap-temp/my-repo/running-route-app-gemini:latest
 
 #本番用のイメージ（サーバー）
 FROM node:18-alpine
@@ -29,4 +28,3 @@ EXPOSE 8080
 ENV NODE_ENV=production
 
 CMD ["node", "server/server.js"]
-

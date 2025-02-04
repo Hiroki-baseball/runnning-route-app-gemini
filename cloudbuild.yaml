@@ -1,0 +1,33 @@
+steps:
+  # 1️⃣ フロントエンドとサーバーの Docker イメージをビルド
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "-t"
+      - "asia-northeast1-docker.pkg.dev/geminigeneratemap-temp/my-repo/running-route-app-gemini:latest"
+      - "--cache-from=asia-northeast1-docker.pkg.dev/geminigeneratemap-temp/my-repo/running-route-app-gemini:latest"
+      - "."
+
+  # 2️⃣ GCP の Artifact Registry にプッシュ
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "asia-northeast1-docker.pkg.dev/geminigeneratemap-temp/my-repo/running-route-app-gemini:latest"
+
+  # 3️⃣ Cloud Run にデプロイ
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "gcloud"
+    args:
+      - "run"
+      - "deploy"
+      - "running-route-app-gemini"
+      - "--image=asia-northeast1-docker.pkg.dev/geminigeneratemap-temp/my-repo/running-route-app-gemini:latest"
+      - "--region=asia-northeast1"
+      - "--platform=managed"
+      - "--allow-unauthenticated"
+      - "--port=8080"
+      - "--memory=512Mi"
+      - "--set-env-vars=GOOGLE_PROJECT_ID=geminigeneratemap-temp"
+
+images:
+  - "asia-northeast1-docker.pkg.dev/geminigeneratemap-temp/my-repo/running-route-app-gemini:latest"

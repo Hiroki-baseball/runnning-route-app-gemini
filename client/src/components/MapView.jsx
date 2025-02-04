@@ -103,7 +103,11 @@ function MapView({
             />
           )}
           {/* DirectionsRenderer は実際にルートを表示 */}
-          {directions && <DirectionsRenderer directions={directions} />}
+          {directions && (
+            <DirectionsRenderer 
+            directions={directions} 
+            options={{suppressMarkers:true}}/>
+          )}
         </GoogleMap>
       </LoadScript>
     </div>

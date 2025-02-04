@@ -22,6 +22,7 @@ router.post('/gemini-generate-route', async (req, res) => {
   const destinationCoords = parseCoordinates(destination);
 
   if (!originCoords || !destinationCoords) {
+    console.error("[ERROR] Invalid coordinates format:", { origin, destination });
     return res.status(400).json({
       error: "Invalid coordinates format. Expected format 'lat,lng'.",
     });
@@ -33,8 +34,14 @@ router.post('/gemini-generate-route', async (req, res) => {
 
   const prompt = generatePrompt(originStr, destinationStr, distance);
 
+  console.log("[DEBUG] OriginStr:", originStr);
+  console.log("[DEBUG] DestinationStr:", destinationStr);
+  console.log("[DEBUG] Distance:", distance);
+  console.log("[DEBUG] Generated prompt:", prompt);
+
   try {
     const routeData = await vertexService.generateRoute(prompt);
+    console.log("[DEBUG] routeData from Vertex AI:", JSON.stringify(routeData, null, 2));
 
     // 生成されたルートデータの検証（waypoints が存在し、最低2つの地点が必要）
     if (!routeData.waypoints || routeData.waypoints.length < 2) {
