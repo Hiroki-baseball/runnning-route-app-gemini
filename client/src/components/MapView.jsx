@@ -5,7 +5,7 @@ import { LoadScript, GoogleMap, DirectionsService, DirectionsRenderer } from "@r
 // GoogleMapコンテナスタイル
 const containerStyle = {
   width: "100%",
-  height: "500px",
+  height: "400px",
 };
 
 // 地図のデフォルト中心 (東京駅付近)
@@ -73,7 +73,7 @@ function MapView({
   }, [routeData]);
 
   return (
-    <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden relative">
+    <div className="bg-blue-900 shadow shadow-black/70 rounded-lg overflow-hidden relative">
       {/* ルートが生成できたときのみGoogleマップを開くボタンを表示 */}
       {googleMapsShareUrl && (
         <div className="absolute top-2 left-2 z-10">
@@ -81,7 +81,7 @@ function MapView({
             href={googleMapsShareUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+            className="inline-block px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-950 transition-colors"
           >
             Googleマップでルートを表示
           </a>
@@ -105,8 +105,9 @@ function MapView({
           {/* DirectionsRenderer は実際にルートを表示 */}
           {directions && (
             <DirectionsRenderer 
-            directions={directions} 
-            options={{suppressMarkers:true}}/>
+              directions={directions} 
+              options={{ suppressMarkers: true }}
+            />
           )}
         </GoogleMap>
       </LoadScript>

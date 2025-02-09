@@ -9,7 +9,6 @@ const initialDistancePresets = [3, 5, 10, 21.1, 42.2];
 const apiUrl = `${config.apiBaseUrl}/api/gemini-generate-route`;
 
 function RoutePlanner() {
-  // ---- State管理 ----
   const [origin, setOrigin] = useState("東京駅");
   const [useCurrentLocation, setUseCurrentLocation] = useState(false);
   const [destination, setDestination] = useState("秋葉原駅");
@@ -24,12 +23,10 @@ function RoutePlanner() {
   const [customDistance, setCustomDistance] = useState("");
   const hasFetchedLocation = useRef(false);
 
-    // ✅ 1. `useCurrentLocation === false` のとき `sessionStorage` を削除
     const clearStoredLocation = () => {
       sessionStorage.removeItem("currentLocation");
     };
   
-    // ✅ 2. `sessionStorage` に保存された現在地情報を取得（あれば `setOrigin`）
     const getStoredLocation = () => {
       const storedLocation = sessionStorage.getItem("currentLocation");
       if (storedLocation) {
@@ -40,7 +37,6 @@ function RoutePlanner() {
       return false;
     };
   
-    // ✅ 3. 現在地を取得し、API を発火して `sessionStorage` に保存
     const fetchCurrentLocation = () => {
       if (hasFetchedLocation.current) return;
       hasFetchedLocation.current = true;
@@ -80,7 +76,6 @@ function RoutePlanner() {
       );
     };
   
-    // ✅ useEffect で関数を呼び出す
     useEffect(() => {
       if (!useCurrentLocation) {
         clearStoredLocation();

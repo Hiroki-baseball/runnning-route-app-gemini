@@ -27,6 +27,8 @@ steps:
       - "--allow-unauthenticated"
       - "--port=8080"
       - "--memory=512Mi"
+      - "--set-env-vars=MONGO_URI=mongodb+srv://runningApp:NEJM_kJm_Jg6-wD@cluster0.w5b17.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      - "--set-env-vars=JWT_SECRET=mySuperSecretKey123!"
       - "--set-env-vars=GOOGLE_PROJECT_ID=geminigeneratemap-temp"
 
 images:
