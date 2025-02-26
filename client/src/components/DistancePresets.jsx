@@ -10,8 +10,6 @@ function DistancePresets({
   setNewPreset,
   addPreset,
   removePreset,
-  customDistance,
-  setCustomDistance,
 }) {
   return (
     <div className="mb-6">
@@ -24,10 +22,9 @@ function DistancePresets({
             <button
               onClick={() => {
                 setDistance(preset);
-                setCustomDistance("");
               }}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                distance === preset && customDistance === ""
+                distance === preset 
                   ? "bg-blue-900 text-white"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
               }`}
@@ -61,7 +58,7 @@ function DistancePresets({
         </button>
       </div>
 
-      <div className="flex flex-col gap-2">
+      {/* <div className="flex flex-col gap-2">
         <input
           type="number"
           value={customDistance}
@@ -72,7 +69,7 @@ function DistancePresets({
           placeholder="カスタム距離"
           className="pl-3 pr-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-sky-500"
         />
-      </div>
+      </div> */}
     </div>
   );
 }

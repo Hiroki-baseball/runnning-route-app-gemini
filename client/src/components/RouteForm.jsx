@@ -16,8 +16,8 @@ function RouteForm({
   setNewPreset,
   addPreset,
   removePreset,
-  customDistance,
-  setCustomDistance,
+  // customDistance,
+  // setCustomDistance,
   handleGenerateRoute,
   isRequesting,
 }) {
@@ -108,8 +108,8 @@ function RouteForm({
         setNewPreset={setNewPreset}
         addPreset={addPreset}
         removePreset={removePreset}
-        customDistance={customDistance}
-        setCustomDistance={setCustomDistance}
+        // customDistance={customDistance}
+        // setCustomDistance={setCustomDistance}
       />
 
       {/* コース生成ボタン */}
