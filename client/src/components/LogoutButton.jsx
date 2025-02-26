@@ -6,12 +6,8 @@ const LogoutButton = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // localStorage に保存しているトークンを削除
     localStorage.removeItem('token');
-    // 必要に応じて、他の認証情報やユーザー情報もクリアする
-    // 例: localStorage.removeItem('user');
     
-    // ログインページへリダイレクト
     navigate('/login');
   };
 

@@ -16,8 +16,6 @@ function RouteForm({
   setNewPreset,
   addPreset,
   removePreset,
-  // customDistance,
-  // setCustomDistance,
   handleGenerateRoute,
   isRequesting,
 }) {
@@ -45,7 +43,6 @@ function RouteForm({
               className="w-full pl-10 pr-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-sky-500"
               placeholder="出発地点を入力"
             />
-            {/* 現在地を使用 チェックボックス */}
             <div className="mt-3 flex items-center gap-2">
               <input
                 type="checkbox"
@@ -82,7 +79,6 @@ function RouteForm({
               className="w-full pl-10 pr-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-sky-500"
               placeholder="目的地を入力"
             />
-            {/* 出発地点と同じにする チェックボックス */}
             <div className="mt-3 flex items-center gap-2">
               <input
                 type="checkbox"
@@ -99,7 +95,6 @@ function RouteForm({
         </div>
       </div>
 
-      {/* 距離プリセット & カスタム距離 */}
       <DistancePresets
         distance={distance}
         setDistance={setDistance}
@@ -108,11 +103,8 @@ function RouteForm({
         setNewPreset={setNewPreset}
         addPreset={addPreset}
         removePreset={removePreset}
-        // customDistance={customDistance}
-        // setCustomDistance={setCustomDistance}
       />
 
-      {/* コース生成ボタン */}
       <button
         onClick={handleGenerateRoute}
         className="w-full bg-blue-900 text-white font-bold py-3 px-4 rounded-lg transition duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-50"

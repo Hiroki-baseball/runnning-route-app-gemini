@@ -2,13 +2,11 @@
 import React, { useMemo } from "react";
 import { LoadScript, GoogleMap, DirectionsService, DirectionsRenderer } from "@react-google-maps/api";
 
-// GoogleMapコンテナスタイル
 const containerStyle = {
   width: "100%",
   height: "400px",
 };
 
-// 地図のデフォルト中心 (東京駅付近)
 const defaultCenter = { lat: 35.681236, lng: 139.767125 };
 
 function MapView({
@@ -19,7 +17,6 @@ function MapView({
   setDirectionsLoaded,
   isRequesting,
 }) {
-  // DirectionsService に渡すコールバック
   const handleDirectionsCallback = (res) => {
     if (!res || directionsLoaded) return;
 
@@ -74,7 +71,6 @@ function MapView({
 
   return (
     <div className="bg-blue-900 shadow shadow-black/70 rounded-lg overflow-hidden relative">
-      {/* ルートが生成できたときのみGoogleマップを開くボタンを表示 */}
       {googleMapsShareUrl && (
         <div className="absolute top-2 left-2 z-10">
           <a
@@ -90,7 +86,6 @@ function MapView({
 
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <GoogleMap mapContainerStyle={containerStyle} center={defaultCenter} zoom={13}>
-          {/* ルートデータがあり、まだDirectionsがロードされていない・リクエスト中でない場合のみDirectionsServiceを呼び出す */}
           {routeData && routeData.waypoints && !directionsLoaded && !isRequesting && (
             <DirectionsService
               options={{
@@ -102,7 +97,6 @@ function MapView({
               callback={handleDirectionsCallback}
             />
           )}
-          {/* DirectionsRenderer は実際にルートを表示 */}
           {directions && (
             <DirectionsRenderer 
               directions={directions} 

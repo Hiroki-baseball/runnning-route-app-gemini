@@ -57,19 +57,6 @@ function DistancePresets({
           <Plus size={20} />
         </button>
       </div>
-
-      {/* <div className="flex flex-col gap-2">
-        <input
-          type="number"
-          value={customDistance}
-          onChange={(e) => {
-            setCustomDistance(e.target.value);
-            setDistance(0); // customDistanceを優先するために既存distanceは0扱い
-          }}
-          placeholder="カスタム距離"
-          className="pl-3 pr-3 py-2 bg-white border border-gray-300 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-sky-500"
-        />
-      </div> */}
     </div>
   );
 }

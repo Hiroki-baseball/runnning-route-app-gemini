@@ -32,7 +32,7 @@ function RoutePlanner() {
       if (storedLocation) {
         const parsed = JSON.parse(storedLocation);
         setOrigin(parsed.address);
-        return true; // 既に保存されていた場合は true を返す
+        return true;
       }
       return false;
     };
@@ -83,13 +83,12 @@ function RoutePlanner() {
       }
   
       if (getStoredLocation()) {
-        return; // 既に保存されていれば `fetchCurrentLocation` を呼ばない
+        return;
       }
   
       fetchCurrentLocation();
     }, [useCurrentLocation]);
 
-  // 距離プリセットの追加
   const addPreset = () => {
     if (newPreset && !isNaN(parseFloat(newPreset))) {
       setDistancePresets([...distancePresets, parseFloat(newPreset)]);
@@ -97,26 +96,21 @@ function RoutePlanner() {
     }
   };
 
-  // 距離プリセットの削除
   const removePreset = (preset) => {
     setDistancePresets(distancePresets.filter((d) => d !== preset));
   };
 
-  // コース生成リクエスト
   const handleGenerateRoute = async () => {
     if (isRequesting) return;
     setIsRequesting(true);
 
     try {
-      console.log("[DEBUG] Sending data:", { origin, destination, distance });
       setDirectionsLoaded(false);
       setRouteData(null);
       setDirections(null);
 
-      // UIでcustomDistanceが入力されている場合はそれを優先
       const finalDistance = customDistance ? parseFloat(customDistance) : distance;
 
-      // 出発地点・目的地のアドレスを緯度経度に変換
       const originLatLng = await geocodeAddress(origin);
       const destinationLatLng = await geocodeAddress(destination);
 
@@ -140,7 +134,7 @@ function RoutePlanner() {
       }
 
       const data = await response.json();
-      setRouteData(data); // { waypoints: [...] }
+      setRouteData(data); 
     } catch (error) {
       console.error(error);
       alert(`エラーが発生しました: ${error.message}`);
@@ -151,7 +145,6 @@ function RoutePlanner() {
 
   return (
     <main className="flex-grow container mx-auto px-4 py-8">
-      {/* 地図描画 */}
       <MapView
         routeData={routeData}
         directions={directions}
@@ -161,7 +154,6 @@ function RoutePlanner() {
         isRequesting={isRequesting}
       />
 
-      {/* 入力フォーム (距離プリセット、出発地、目的地など) */}
       <RouteForm
         origin={origin}
         setOrigin={setOrigin}

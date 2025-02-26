@@ -13,7 +13,6 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-// フロントエンドのURLは環境変数から取得
 //デプロイ用一行だけ
 // app.use(cors({ origin: config.apiBaseUrl }));
 
@@ -30,7 +29,6 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-// ルートの登録
 app.use('/api', geminiRoute);
 
 if (process.env.NODE_ENV === 'production') {
